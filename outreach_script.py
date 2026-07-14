@@ -184,8 +184,9 @@ def main():
     failed_count = 0
     
     for row_idx, row in pending_rows:
-        first_name = str(row.get("First Name", "")).strip()
-        last_name = str(row.get("Last Name", "")).strip()
+        name = str(row.get("Name", "")).strip()
+        first_name = name.split()[0] if name else ""
+        last_name = " ".join(name.split()[1:]) if name else ""
         email = str(row.get("Email", "")).strip()
         company = str(row.get("Company", "")).strip()
         website = str(row.get("Website", "")).strip()

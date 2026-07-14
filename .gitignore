@@ -7,8 +7,10 @@ __pycache__/
 *.pyo
 
 # Credentials (do NOT commit)
+github-automation-*.json
 *.json
 !companies_template.csv
+.env
 
 # OS
 Thumbs.db

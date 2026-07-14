@@ -72,6 +72,10 @@ def get_gspread_client():
     
     import json
     creds_dict = json.loads(creds_json)
+    # Fix: GitHub Actions secrets may double-escape \n in the private key.
+    # Replace literal \\n with real newlines so the PEM parser can read it.
+    if "private_key" in creds_dict:
+        creds_dict["private_key"] = creds_dict["private_key"].replace("\\n", "\n")
     creds = Credentials.from_service_account_info(creds_dict, scopes=SCOPES)
     return gspread.authorize(creds)
 
